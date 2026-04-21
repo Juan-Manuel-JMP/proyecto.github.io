@@ -127,6 +127,118 @@
 
   ul { padding-left: 20px; }
 
+/* --- Contenedor principal --- */
+.carousel-outer {
+  max-width: 900px; 
+  width: 95%;      
+  margin: 40px auto;
+  position: relative;
+  padding: 0 80px;    
+}
+
+.carousel-container {
+  background: rgba(28, 33, 40, 0.9);
+  border-radius: 12px;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.carousel-item img {
+  height: 350px; 
+  object-fit: contain; 
+  width: 100%;
+  padding: 20px;
+  background: #0d1117; 
+}
+
+.carousel-caption {
+  position: relative !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  padding: 15px 0 !important;
+  background: #161b22; 
+  border-top: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.carousel-caption h5 {
+  font-size: 1rem;
+  color: #58a6ff;
+  margin: 0;
+  text-align: center;
+}
+
+/* --- Botones fuera del contenedor --- */
+.carousel-control-prev, .carousel-control-next {
+  width: 45px;
+  height: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(88, 166, 255, 0.15);
+  border-radius: 50%;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  opacity: 1; 
+  z-index: 10;
+}
+
+/* Posicionamiento en Escritorio */
+.carousel-control-prev { left: 10px; }
+.carousel-control-next { right: 10px; }
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background: rgba(88, 166, 255, 0.4);
+  border-color: #58a6ff;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- responsivo (Media Queries) --- */
+
+  /*  corte (320px) */
+@media (max-width: 480px) {
+  .carousel-outer {
+    padding: 0 50px; 
+  }
+  .carousel-item img {
+    height: 220px; 
+  }
+  
+  .carousel-control-prev { left: -5px; }
+  .carousel-control-next { right: -5px; }
+  .carousel-control-prev, .carousel-control-next {
+    width: 35px; 
+    height: 35px;
+  }
+}
+
+/* corte (481px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .carousel-outer {
+    padding: 0 60px;
+  }
+  .carousel-item img {
+    height: 280px;
+  }
+  .carousel-control-prev { left: 0px; }
+  .carousel-control-next { right: 0px; }
+}
+
+/* corte (768px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .carousel-outer {
+    padding: 0 70px;
+  }
+  .carousel-item img {
+    height: 320px;
+  }
+  .carousel-control-prev { left: 5px; }
+  .carousel-control-next { right: 5px; }
+}
+
   footer {
     text-align: center;
     padding: 20px;
@@ -259,7 +371,7 @@
       </div>
       
       <div class="col-md-6 d-flex flex-column">
-        <div class="card-custom h-100">Integrantes: Poner Apellido y Nombre</div>
+        <div class="card-custom h-100">Integrantes: [Completar]</div>
         <div class="card-custom h-100">Fecha de Entrega: 14/06/2026</div>
         <div class="card-custom h-100">Versión: 01</div>
       </div>
@@ -568,14 +680,14 @@
 
                                         <!--Fin restricciones-->
           <div id="visiones">
-            <h2 class="section-title text-center mt-2">Nueva Visión de Gestión de Proyectos</h2>
+            <h2 class="section-title text-center mt-2">Nuevas Visión de Gestión de Proyectos</h2>
             <div class="card-custom">
               <h6>Los modelos modernos de gestión de proyectos amplían la visión tradicional incorporando nuevas dimensiones:</h6>
               <ul>
                 <li><strong class="section-title-sub">Calidad</strong></li>
                 <li><strong class="section-title-sub">Recursos</strong></li>
                 <li><strong class="section-title-sub">Riesgos</strong></li>
-                <li><strong class="section-title-sub">Satisfacción del Cliente</strong></li>
+                <li><strong class="section-title-sub">Satisfacción del cliente</strong></li>
               </ul>
               <h6>Esto permite una evaluación más completa del éxito del proyecto.</h6>
             </div>
@@ -584,16 +696,18 @@
 
                                           <!--Fin visiones-->
           <div id="implicancia">
-              <h2 class="section-title text-center mt-2">Implicancias del Proyecto</h2>
-                <div class="card-custom">
-                  <h5>En el presente proyecto, las restricciones se aplican de la siguiente manera</h5>
-                  <ul>
-                    <li><strong class="section-title-sub">Calidad:</strong> El sistema debe funcionar correctamente y sin errores críticos</li>
-                    <li><strong class="section-title-sub">Recursos:</strong> Se consideran herramientas tecnológicas y tiempo del equipo de desarrollo</li>
-                    <li><strong class="section-title-sub">Riesgos:</strong> Integración de pagos, tiempos de entrega, adopción del sistema</li>
-                    <li><strong class="section-title-sub">Satisfacción del cliente:</strong> Facilidad de uso, rapidez y confiabilidad (Comodidad del Usuario)</li>
-                  </ul>
-              </div>
+          <h2 class="section-title text-center mt-2">Implicancias del Proyecto</h2>
+          <div class="card-custom">
+            <h5>En el presente proyecto, las restricciones se aplican de la siguiente manera</h5>
+            <h6 class="section-title-sub mb-3">Se utilizan indicadores clave de desempeño (KPI) para evaluar el progreso</h6>
+            <ul>
+              <li><strong class="section-title-sub">Calidad:</strong> El sistema debe funcionar correctamente y sin errores críticos</li>
+              <li><strong class="section-title-sub">Recursos:</strong> Se consideran herramientas tecnológicas y tiempo del equipo de desarrollo</li>
+              <li><strong class="section-title-sub">Riesgos:</strong> Integración de pagos, tiempos de entrega, adopción del sistema</li>
+              <li><strong class="section-title-sub">Satisfacción del cliente:</strong> Facilidad de uso, rapidez y confiabilidad (Comodidad del Usuario)</li>
+            </ul>
+            <p><strong>Se aplica gestión de cambios para controlar modificaciones en el alcance y evitar desviaciones en tiempo y costo.</strong></p>
+          </div>
           </div>
 
                                                 <!--Fin implicancia-->
@@ -604,6 +718,58 @@
       </div>
     </div>
   </section>
+
+  <div class="carousel-outer">
+  <div id="carruselImagenes" class="carousel slide carousel-container" data-bs-ride="carousel" data-bs-interval="3000">
+    
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/uso.png" class="d-block w-100" alt="Casos de Uso">
+        <div class="carousel-caption">
+          <h5 class="fw-bold">Casos de Uso (UML)</h5>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img src="assets/clases.png" class="d-block w-100" alt="Clases">
+        <div class="carousel-caption">
+          <h5 class="fw-bold">Diagrama de Clases</h5>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img src="assets/secuencia.png" class="d-block w-100" alt="Secuencia">
+        <div class="carousel-caption">
+          <h5 class="fw-bold">Diagrama de Secuencia</h5>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img src="assets/actividad.png" class="d-block w-100" alt="Actividad">
+        <div class="carousel-caption">
+          <h5 class="fw-bold">Diagrama de Actividad</h5>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img src="assets/estados.png" class="d-block w-100" alt="Estados">
+        <div class="carousel-caption">
+          <h5 class="fw-bold">Diagrama de Estados</h5>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</div>
 
   <footer class="glass py-4 text-center">
     <div class="container">
