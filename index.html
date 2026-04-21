@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto IFTS N°9</title>
+
+<link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #c9d1d9;
+    background: linear-gradient(rgba(13, 17, 23, 0.92), rgba(13, 17, 23, 0.95)),
+                url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb') center/cover no-repeat fixed;
+    background-blend-mode: multiply;
+    min-height: 100vh;
+  }
+
+  .glass {
+    background: rgba(22, 27, 34, 0.75);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(88, 166, 255, 0.1);
+  }
+
+  .navbar {
+    padding: 8px 0;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #f0f6fc;
+    transition: 0.2s ease;
+  }
+
+  .navbar-brand img {
+    width: 35px;
+    height: auto;
+    margin-right: 8px;
+  }
+
+  .navbar-brand:hover {
+    color: #58a6ff;
+    transform: scale(1.03);
+  }
+
+  .nav-link {
+    transition: 0.2s ease;
+    color: #c9d1d9 !important;
+    position: relative;
+    font-size: 0.9rem;
+  }
+
+  .nav-link:hover {
+    color: #58a6ff !important;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 1px;
+    background: #58a6ff;
+    transition: 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .card-custom {
+    background: rgba(28, 33, 40, 0.85);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(48, 54, 61, 0.8);
+    transition: all 0.3s ease;
+    width: 100%; 
+    display: block;
+  }
+
+  .card-custom:hover {
+    transform: translateY(-6px);
+    border-color: #58a6ff;
+    box-shadow: 0 12px 30px rgba(88, 166, 255, 0.25);
+  }
+
+  .section-title {
+    color: #58a6ff;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, #58a6ff, transparent);
+  }
+
+  .hero h1 {
+    text-shadow: 0 0 20px rgba(88,166,255,0.4);
+  }
+
+  .section-title-sub{
+    color: #58a6ff;
+    font-weight: 700;
+  }
+
+  ul { padding-left: 20px; }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #8b949e;
+    background: rgba(13, 17, 23, 0.8);
+  }
+
+  /* Botón Volver Arriba */
+  .btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #58a6ff;
+    text-decoration: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    border: 1px solid rgba(88, 166, 255, 0.3);
+  }
+
+  .btn-back-to-top:hover {
+    background: #58a6ff;
+    color: #0d1117;
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+  }
+
+  /* Ajuste para celu */
+  @media (max-width: 576px) {
+    .btn-back-to-top {
+      bottom: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* responsivo específicos para el desplegable celu */
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      background: rgba(22, 27, 34, 0.95);
+      margin-top: 10px;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(88, 166, 255, 0.2);
+    }
+    .nav-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .nav-item:last-child {
+      border-bottom: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg glass sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./logo.jpg" alt="IFTS 9">
+        <span>IFTS N° 9</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
+      <span style="color: white; font-size: 1.5rem;">☰</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menuNavegacion">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle btn btn-outline-primary text-white" href="#" id="menuProyecto" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid rgba(88, 166, 255, 0.3); padding: 8px 20px; border-radius: 8px;">
+            Menú del Proyecto
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark glass shadow-lg" aria-labelledby="menuProyecto" style="max-height: 400px; overflow-y: auto; border: 1px solid rgba(88, 166, 255, 0.2);">
+            <li><a class="dropdown-item" href="#enfoque">Enfoque</a></li>
+            <li><a class="dropdown-item" href="#stakeholders">Stakeholders</a></li>
+            <li><a class="dropdown-item" href="#propuesta">Propuesta</a></li>
+            <li><a class="dropdown-item" href="#modelo">Modelo</a></li>
+            <li><a class="dropdown-item" href="#relevamiento">Relevamiento</a></li>
+            <li><a class="dropdown-item" href="#requerimientos">Requerimientos</a></li>
+            <li><a class="dropdown-item" href="#gestion">Gestión</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#charter">Charter</a></li>
+            <li><a class="dropdown-item" href="#cronograma">Cronograma</a></li>
+            <li><a class="dropdown-item" href="#estructura">Estructura</a></li>
+            <li><a class="dropdown-item" href="#riesgos">Riesgos</a></li>
+            <li><a class="dropdown-item" href="#ejecucion">Ejecución</a></li>
+            <li><a class="dropdown-item" href="#monitoreo">Monitoreo</a></li>
+            <li><a class="dropdown-item" href="#cierre">Cierre</a></li>
+            <li><a class="dropdown-item" href="#restricciones">Restricciones</a></li>
+            <li><a class="dropdown-item" href="#visiones">Visiones</a></li>
+            <li><a class="dropdown-item" href="#implicancia">Implicancia</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="hero text-center py-2">
+    <div class="container">
+      <h1>Proyecto Grupal: <span>Sistema de Pedidos Online</span></h1>
+    </div>
+  </div>
+
+  <section class="py-2">
+  <div class="container col-lg-8 mx-auto">
+    <h2 class="section-title text-center">Datos del Proyecto</h2>
+    
+    <div class="row g-4 justify-content-center">
+      
+      <div class="col-md-6 d-flex flex-column">
+        <div class="card-custom h-100">Nombre del Proyecto: Sistema de Pedidos Online para Pizzería</div>
+        <div class="card-custom h-100">Número de Equipo: X</div>
+        <div class="card-custom h-100">Hito: 01</div>
+      </div>
+      
+      <div class="col-md-6 d-flex flex-column">
+        <div class="card-custom h-100">Integrantes: [Completar]</div>
+        <div class="card-custom h-100">Fecha de Entrega: 14/06/2026</div>
+        <div class="card-custom h-100">Versión: 01</div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+  <section id="enfoque" class="py-5">
+    <div class="container col-lg-8 mx-auto">
+      <h2 class="section-title text-center">Enfoque del Proyecto</h2>
+      <div class="card-custom">
+        El presente proyecto tiene como objetivo analizar, diseñar y proponer una solución digital para una pizzería que actualmente gestiona pedidos de manera manual.<br><br>
+        Se propone el desarrollo de una aplicación <strong class="section-title-sub">mobile-first</strong>, que permita digitalizar el proceso de pedidos, integrar pagos online y mejorar la experiencia del cliente.
+      </div>
+
+      <h2 class="section-title text-center mt-5">Objetivos</h2>
+      <div class="col-md-10 mx-auto">
+          <div class="card-custom">
+            <strong class="section-title-sub">Objetivo General:</strong><br>
+            Desarrollar un Sistema Online de Pedidos que permita optimizar la Gestión Operacional del Negocio.
+          </div>
+
+          <div class="card-custom">
+            <strong class="section-title-sub">Objetivos Específicos:</strong>
+            <ul>
+              <li>Reducción de Errores</li>
+              <li>Implementar el Sistema de Pagos Digitales</li>
+              <li>Mejora en Tiempos de Gestión Operativa</li>
+              <li>Automatizaciones de Procesos</li>
+            </ul>
+          </div>
+      </div>
+                                  <!--Fin Enfoque -->
+
+
+      <div id="stakeholders" class="container-fluid d-flex justify-content-center align-items-center my-5">
+        <div class="col-md-6">
+          <div class="card-custom p-4 shadow">
+            <h2 class="section-title text-center">Stakeholders</h2>
+            <ul>
+              <li>Dueño</li>
+              <li>Empleados</li>
+              <li>Clientes</li>
+              <li>Proveedor de Pagos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+                        <!--Fin Stakeholders-->
+      <div id="propuesta">
+        <h2 class="section-title text-center mt-2">Propuesta de Valor</h2>
+        <div class="row g-3 justify-content-center">
+          <div class="col-md-5"><div class="card-custom text-center">Sistema Digital</div></div>
+          <div class="col-md-5"><div class="card-custom text-center">Pedidos Rápidos</div></div>
+          <div class="col-md-5"><div class="card-custom text-center">Pagos Online</div></div>
+          <div class="col-md-5"><div class="card-custom text-center">Seguimiento en Tiempo Real</div></div>
+        </div>
+      </div>
+
+
+                      <!--Fin Propuesta-->
+      <div id="modelo">
+        <h2 class="section-title text-center mt-5">Modelo de Negocio</h2>
+        <div class="col-md-10 mx-auto">
+            <div class="card-custom">
+              <strong class="section-title-sub">Segmento:</strong> Clientes de la Pizzería<br>
+              <strong class="section-title-sub">Canales:</strong> App + Redes Sociales<br>
+              <strong class="section-title-sub">Ingresos:</strong> Desarrollo + Mantenimiento<br>
+              <strong class="section-title-sub">Recursos:</strong> Sistema + Hosting + Servicios
+            </div>
+        </div>
+      </div>
+
+
+                        <!--Fin Negocio-->
+      <div id="relevamiento">
+        <h2 class="section-title text-center mt-5">Relevamiento</h2>
+        <div class="col-md-10 mx-auto">
+            <div class="card-custom">
+              <strong class="section-title-sub">Problemas:</strong>
+              <ul>
+                <li>Pedidos Generados de Forma Manual vía Teléfono</li>
+                <li>Alta Probabilidad de Ocurrencia de Errores</li>
+                <li>No realiza Geolocalización de los Pedidos</li>
+                <li>No posee medios de Pagos Digitales</li>
+                <li>No incluye Sistema de Feedback del Cliente</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+
+                    <!--Fin Relevamiento-->
+                
+      <div id="requerimientos">
+        <h2 class="section-title text-center mt-5">Requerimientos</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-5">
+            <div class="card-custom h-100">
+              <strong class="section-title-sub">Funcionales</strong>
+              <ul>
+                <li>Registro – Login en la App</li>
+                <li>Exploración del Menú</li>
+                <li>Gestión del Pedido y Carrito</li>
+                <li>Conformación y Ejecución de Pago</li>
+                <li>Seguimiento en Tiempo Real</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card-custom h-100">
+              <strong class="section-title-sub">No Funcionales</strong>
+              <ul>
+                <li>Mobile-first</li>
+                <li>Seguridad</li>
+                <li>Disponibilidad</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+                          <!--Fin Requerimiento-->
+  <section id="gestion" class="py-5">
+    <div class="container col-lg-8 mx-auto">
+      <h2 class="section-title text-center">Gestión del Proyecto</h2>
+
+      <div class="col-md-10 mx-auto">
+          <div class="card-custom">
+            <h4 class="section-title-sub">Inicio y Concepción</h4>
+            <p>En esta fase se formaliza la existencia del proyecto, definiendo el problema a resolver, los objetivos estratégicos y los principales interesados (stakeholders).
+              En el contexto del presente trabajo, se identifica que la pizzería gestiona sus pedidos de forma manual, lo que genera errores, demoras y una experiencia poco eficiente para el cliente; como así también no se encuentra un medio para canalizar los feedback del cliente para futuras mejoras.
+            </p>
+            <h4 class="section-title-sub">Se pueden establecer los siguientes elementos:</h4>
+            <strong class="section-title-sub">Problema:</strong> Gestión Manual de Pedidos con Alta Probabilidad de Error <br>
+            <strong class="section-title-sub">Objetivo Clave:</strong> Implementar un Sistema Digital de Pedidos Online <br>
+            <strong class="section-title-sub">Stakeholders:</strong> Dueño del negocio - Empleados - Clientes - Proveedor de Pagos
+            </div>
+
+
+                                          <!--Fin Proyecto-->
+          <div id="charter">
+              <div class="card-custom">
+                   <h2 class="section-title text-center">Project Charter (Acta de Constitución)</h2>
+                  <strong class="section-title-sub">Nombre del Proyecto:</strong> Sistema de Pedidos Online para la Pizzería<br>
+                  <strong class="section-title-sub">Justificación:</strong> Mejorar eficiencia operativa y experiencia del cliente<br>
+                  <strong class="section-title-sub">Alcance inicial:</strong> App mobile-first + Pagos + Seguimiento<br>
+                  <strong class="section-title-sub">Responsables:</strong> Eq. Comercialización – Eq. de A. de Sistemas – Eq. de Dev – IFTS N°9 y Próximamente otro IFTS N° X <br>        
+                  <h4 class="section-title-sub">Planificación Detallada</h4>
+                  <p>En esta fase se define cómo se llevará a cabo el proyecto, estableciendo el alcance, cronograma, recursos y riesgos.</p>
+                </div> 
+          </div>
+
+
+                                         <!--Fin Charter-->
+            <div id="alcance">
+                <div class="card-custom">
+                  <h4 class="section-title-sub">Alcance del Proyecto</h4>
+                  <p class=" section-title-sub mb-3"><strong>El Sistema Incluirá:</strong></p>
+                  <strong>Aplicación de Pedidos Online</strong><br>
+                  <strong>Integración con Pasarela de Pago</strong><br>
+                  <strong>Panel Administrativo / Cliente</strong><br>
+                  <strong>Sistema de Seguimiento de Pedidos (Trazabilidad)</strong><br>
+                </div>
+            </div>
+
+
+                                      <!--Fin Alcance-->
+            <div id="cronograma">
+              <div class="card-custom">
+                <h4 class="section-title-sub mb-3">Cronograma Gantt Estimado:</h4>
+                <div class="d-flex align-items-center mb-2">
+                <span class="badge rounded-pill bg-primary px-3 py-2 me-3" style="min-width: 100px;">
+                  Semana 1–2</span>
+                <span class="text-secondary fw-semibold">Relevamiento</span>
+              </div>  
+              <div class="d-flex align-items-center mb-2">
+                  <span class="badge rounded-pill bg-danger px-3 py-2 me-3" style="min-width: 100px;">
+                    Semana 3–4
+                  </span>
+                  <span class="text-secondary fw-semibold">Diseño UX/UI y Arquitectura</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                  <span class="badge rounded-pill bg-secondary px-3 py-2 me-3" style="min-width: 100px;">
+                    Semana 5–8
+                  </span>
+                  <span class="text-secondary fw-semibold">Desarrollo</span>
+              </div>
+
+              <div class="d-flex align-items-center mb-2">
+                  <span class="badge rounded-pill bg-info text-dark px-3 py-2 me-3" style="min-width: 100px;">
+                    Semana 9
+                  </span>
+                  <span class="text-secondary fw-semibold">Testing</span>
+              </div>
+
+              <div class="d-flex align-items-center mb-2">
+                  <span class="badge rounded-pill bg-success px-3 py-2 me-3" style="min-width: 100px;">
+                    Semana 10
+                  </span>
+                  <span class="text-secondary fw-semibold">Implementación</span>
+              </div>
+          </div>
+          </div>
+
+                                           <!--Fin Gantt-->
+        <div id="estructura">
+          <h2 class="section-title text-center mt-2">WBS/EDT (Estructura de Desglose del Trabajo)</h2>
+          <div class="row g-3 justify-content-center">
+              <div class="col-md-5"><div class="card-custom text-center">Análisis-Relevamiento-Definición de Requerimientos</div></div>
+              <div class="col-md-5"><div class="card-custom text-center">Diseño UX/UI-Arquitectura del Sistema</div></div>
+              <div class="col-md-5"><div class="card-custom text-center">Testing-Pruebas Funcionales-Corrección de Errores</div></div>
+              <div class="col-md-5"><div class="card-custom text-center">Implementación-Deploy del Sistema-Puesta en Producción</div></div>
+          </div>
+
+
+                                      <!--Fin WBS/EDT-->
+        </div>
+          <div id="riesgos">
+            <div class="card-custom">
+              <h4 class="section-title-sub">Gestión de Riesgos</h4>
+              <ul>
+                <li>Fallas en la integración con pasarela de pago</li>
+                <li>Retrasos en el desarrollo</li>
+                <li>Problemas de adopción por parte del negocio</li>
+                <li>Errores en Producción</li>
+              </ul>
+            </div>
+          </div>
+
+                                          <!--Fin Riesgos-->
+          <div id="ejecucion">
+            <h2 class="section-title text-center mt-2">Ejecución y Gestión del Desarrollo</h2>
+            <div class="card-custom">
+              <h5>En esta fase se desarrollan las funcionalidades del sistema según lo planificado</h5>
+              <h6 class="section-title-sub mb-3">Se llevan a cabo las siguientes actividades</h6>
+              <ul>
+                <li>Desarrollo de la Aplicación Mobile-First </li>
+                <li>Implementación del Sistema de Pedidos</li>
+                <li>Integración con Pasarela de Pago</li>
+                <li>Desarrollo del Panel Administrativo / Cliente</li>
+              </ul>
+              <p><strong>Durante esta etapa, se mantiene una comunicación continua con los stakeholders para validar avances y asegurar que el producto cumpla con las expectativas.</strong></p>
+            </div>
+          </div>
+
+                                          <!--Fin Ejecucion-->
+          <div id="monitoreo">
+            <h2 class="section-title text-center mt-2">Monitoreo y Control</h2>
+            <div class="card-custom">
+              <h5>El monitoreo se realiza de manera transversal durante toda la ejecución del proyecto</h5>
+              <h6 class="section-title-sub mb-3">Se utilizan indicadores clave de desempeño (KPI) para evaluar el progreso</h6>
+              <ul>
+                <li>Porcentaje de avance del desarrollo</li>
+                <li>Cantidad de funcionalidades completadas</li>
+                <li>Número de errores detectados en testing </li>
+              </ul>
+              <p><strong>Se aplica gestión de cambios para controlar modificaciones en el alcance y evitar desviaciones en tiempo y costo.</strong></p>
+            </div>
+          </div>
+
+
+                                        <!--Fin Monitoreo-->
+          <div id="cierre">
+            <h2 class="section-title text-center mt-2">Cierre y Capitalización de la Experiencia</h2>
+            <div class="card-custom">
+              <h5>El proyecto finaliza con la entrega del Sistema Funcional y su Validación por parte del Cliente.</h5>
+              <h6 class="section-title-sub mb-3">Finalización</h6>
+              <ul>
+                <li>Entrega del sistema</li>
+                <li>Validación Final del cliente</li>
+                <li>Documentación del Proyecto</li>
+              </ul>
+              <h6 class="section-title-sub mb-3">Aprendizaje / Experiencia Obtenida</h6>
+              <ul>
+                <li>La validación / detección temprana reduce errores </li>
+                <li>La Comunicación con el Cliente es Fundamental (Efectiva – Clara – Asertiva)</li>
+                <li>Una Planificación y Gestión Adecuada Impacta Directamente en los Resultados</li>
+              </ul>
+              </div>
+            </div>
+
+
+                                            <!--Fin Cierre y Cap-->
+          <div id="restricciones">
+          <h2 class="section-title text-center mt-2">Restricciones de un Proyecto</h2>
+          <div class="card-custom">
+            <h6>Tradicionalmente, la gestión de proyectos se basa en tres <span style="color: red;">variables</span> fundamentales</h6>
+            <ul>
+              <li><strong class="section-title-sub">Alcance:</strong> Define las funcionalidades y entregables del sistema</li>
+              <li><strong class="section-title-sub">Tiempo:</strong> Establece la duración del proyecto</li>
+              <li><strong class="section-title-sub">Costo:</strong> Representa los recursos económicos necesarios</li>
+            </ul>
+          </div>
+        
+          <div class="row g-3 justify-content-center">
+            <div class="col-md-12"><div class="card-custom text-center">Estas tres variables están interrelacionadas, por lo que cualquier modificación en una de ellas impacta en las otras.</div></div>
+          </div>
+
+          <div class="card-custom text-center mt-4">
+            <strong class="section-title-sub">Observación Práctica:</strong> Si se reduce el tiempo de desarrollo, será necesario aumentar los recursos (costo) o disminuir el alcance del sistema.
+          </div>
+          </div>
+
+                                        <!--Fin restricciones-->
+          <div id="visiones">
+            <h2 class="section-title text-center mt-2">Nuevas Visión de Gestión de Proyectos</h2>
+            <div class="card-custom">
+              <h6>Los modelos modernos de gestión de proyectos amplían la visión tradicional incorporando nuevas dimensiones:</h6>
+              <ul>
+                <li><strong class="section-title-sub">Calidad</strong></li>
+                <li><strong class="section-title-sub">Recursos</strong></li>
+                <li><strong class="section-title-sub">Riesgos</strong></li>
+                <li><strong class="section-title-sub">Satisfacción del cliente</strong></li>
+              </ul>
+              <h6>Esto permite una evaluación más completa del éxito del proyecto.</h6>
+            </div>
+          </div>
+
+
+                                          <!--Fin visiones-->
+          <div id="implicancia">
+          <h2 class="section-title text-center mt-2">Implicancias del Proyecto</h2>
+          <div class="card-custom">
+            <h5>En el presente proyecto, las restricciones se aplican de la siguiente manera</h5>
+            <h6 class="section-title-sub mb-3">Se utilizan indicadores clave de desempeño (KPI) para evaluar el progreso</h6>
+            <ul>
+              <li><strong class="section-title-sub">Calidad:</strong> El sistema debe funcionar correctamente y sin errores críticos</li>
+              <li><strong class="section-title-sub">Recursos:</strong> Se consideran herramientas tecnológicas y tiempo del equipo de desarrollo</li>
+              <li><strong class="section-title-sub">Riesgos:</strong> Integración de pagos, tiempos de entrega, adopción del sistema</li>
+              <li><strong class="section-title-sub">Satisfacción del cliente:</strong> Facilidad de uso, rapidez y confiabilidad (Comodidad del Usuario)</li>
+            </ul>
+            <p><strong>Se aplica gestión de cambios para controlar modificaciones en el alcance y evitar desviaciones en tiempo y costo.</strong></p>
+          </div>
+          </div>
+
+                                                <!--Fin implicancia-->
+          <div class="card-custom text-center mt-4">
+            <strong class="section-title-sub">Conclusión</strong> El éxito del proyecto no depende únicamente de cumplir con el tiempo y el presupuesto, sino de entregar una solución que aporte valor real al negocio y satisfaga las necesidades del usuario final.
+            Un sistema que no cumpla con estas expectativas, aunque respete los plazos y costos, no puede considerarse exitoso desde una perspectiva estratégica.
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="glass py-4 text-center">
+    <div class="container">
+      <p class="mb-0">T.P. Grupal -Equipo N° X — IFTS N°9 © 2026</p>
+    </div>
+  </footer>
+
+  <a href="#" class="btn-back-to-top glass" title="Volver al inicio">
+    ▲
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
